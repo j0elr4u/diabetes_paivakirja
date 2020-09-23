@@ -24,3 +24,4 @@ osallistuvat läheiset.
 Sovellusta tulisi käyttää useita kertoja päivässä. Fyysinen ympäristö ei vaikuttaa
 käyttöön. Sovellus voisi käyttää missä vaan, missä on mahdollista käyttää
 verensokerimittarin.
+
