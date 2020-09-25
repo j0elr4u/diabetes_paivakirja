@@ -10,6 +10,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+// Kopioitu täältä: https://howtodoinjava.com/java/java-security/aes-256-encryption-decryption/
 public class AES256 {
     private static String secretKey = "lpmFTRA0GVVu79qtkP7h";
     private static String secretKey2 = "8Cpd3j44hA2LCt8";
