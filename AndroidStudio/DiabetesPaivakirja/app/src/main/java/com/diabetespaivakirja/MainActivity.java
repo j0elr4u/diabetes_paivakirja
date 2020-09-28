@@ -82,4 +82,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
+    //Diagrammi Activity button vv
+    public void onButtonPressed_Arvo(View view){
+       Intent intent = new Intent(MainActivity.this, ArvoActivity.class);
+        startActivity(intent);}
 }

@@ -7,10 +7,11 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/Check_Arvo"
         android:layout_width="276dp"
         android:layout_height="58dp"
-        android:text="Päiväkirja"
+        android:onClick="onButtonPressed_Arvo"
+        android:text="Verensokeri"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +19,7 @@
         app:layout_constraintVertical_bias="0.9" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Send_Arvo"
         android:layout_width="276dp"
         android:layout_height="58dp"
         android:text="Lisää verensokeriarvo"
@@ -92,7 +93,7 @@
         app:layout_constraintVertical_bias="0.13999999" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/Navi_Button"
         android:layout_width="65dp"
         android:layout_height="56dp"
         android:text="Button"
@@ -132,10 +133,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
