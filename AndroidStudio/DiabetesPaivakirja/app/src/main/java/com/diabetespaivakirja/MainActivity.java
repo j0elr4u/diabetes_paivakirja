@@ -1,21 +1,35 @@
 package com.diabetespaivakirja;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
-import android.widget.CalendarView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
-    private static int date;
-    private static int month;
-    private static int year;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    EditText txtDate, txtTime;
+    Calendar calendar;
+    private int mYear;
+    private int mMonth;
+    private int mDay;
+    private int mHour;
+    private int mMinute;
+
+    private double value;
 
     private SharedPrefs sp = new SharedPrefs("prefs");
 
@@ -37,11 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!isCalendarVisible()) {
-            super.onBackPressed();
-        } else {
-            toggleCalendar();
-        }
+        super.onBackPressed();
     }
 
     private void updateUI() {
@@ -56,82 +66,82 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Calendar stuff
-    private void calendarStuff() {
-        final CalendarView calendar_view = getCalendarView();
-        final TextView date_view = findViewById(R.id.dateView);
-        final Calendar calendar = Calendar.getInstance();
-        MainActivity.date = calendar.get(Calendar.DATE);
-        MainActivity.month = calendar.get(Calendar.MONTH) + 1;
-        MainActivity.year = calendar.get(Calendar.YEAR);
-        String ddMmYy = MainActivity.date + "/" + MainActivity.month + "/" + MainActivity.year;
-        date_view.setText(ddMmYy);
 
-        toggleCalendar();
+    public void calendarStuff() {
+        txtDate = findViewById(R.id.dateView);
+        txtTime = findViewById(R.id.timeView);
 
-        // Kopioitu täältä: https://www.geeksforgeeks.org/android-creating-a-calendar-view-app/
-        // Add Listener in calendar
-        calendar_view
-                .setOnDateChangeListener(
-                        new CalendarView
-                                .OnDateChangeListener() {
-                            @Override
+        txtDate.setOnClickListener(this);
+        txtTime.setOnClickListener(this);
 
-                            // In this Listener have one method
-                            // and in this method we will
-                            // get the value of DAYS, MONTH, YEARS
-                            public void onSelectedDayChange(
-                                    @NonNull CalendarView view,
-                                    int year,
-                                    int month,
-                                    int dayOfMonth)
-                            {
+        calendar = Calendar.getInstance();
 
-                                // Store the value of date with
-                                // format in String type Variable
-                                // Add 1 in month because month
-                                // index is start with 0
-                                MainActivity.date = dayOfMonth;
-                                MainActivity.month = (month + 1);
-                                MainActivity.year = year;
-                                String Date
-                                        = MainActivity.date + "/"
-                                        + MainActivity.month + "/" + MainActivity.year;
+        // Get Current Date
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-                                // set this date in TextView for Display
-                                date_view.setText(Date);
-                                toggleCalendar();
-                            }
-                        });
+        // Get Current Time
+        mHour = calendar.get(Calendar.HOUR_OF_DAY);
+        mMinute = calendar.get(Calendar.MINUTE);
+
+        // Set current date & time in the text
+        String dateText = mDay + "/" + mMonth + "/" + mYear;
+        String timeText = mHour + ":" + mMinute;
+
+        txtDate.setText(dateText);
+        txtTime.setText(timeText);
+
+        // Rest is done in onClick()
     }
 
-    private void toggleCalendar() {
-        final CalendarView calendar_view = getCalendarView();
-        if(isCalendarVisible()) {
-            calendar_view.setVisibility(View.GONE);
-        }
-        else {
-            calendar_view.setVisibility(View.VISIBLE);
-        }
-    }
+    // https://www.journaldev.com/9976/android-date-time-picker-dialog
+    @Override
+    public void onClick(View v) {
 
-    private boolean isCalendarVisible() {
-        final CalendarView calendar_view = getCalendarView();
-        if(calendar_view.getVisibility() == View.VISIBLE) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        if (v == txtDate) {
 
-    private CalendarView getCalendarView() {
-        return findViewById(R.id.calendarView);
+            // Launch Date Picker Dialog
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            mYear = year;
+                            mMonth = (monthOfYear + 1);
+                            mDay = dayOfMonth;
+
+                            String text = mDay + "/" + mMonth + "/" + mYear;
+                            txtDate.setText(text);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
+        if (v == txtTime) {
+
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
+
+                            mMinute = minute;
+                            mHour = hourOfDay;
+
+                            String text = mHour + ":" + mMinute;
+                            txtTime.setText(text);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
     }
 
     // Buttons
-
-    public void onDateViewPressed(View view) {
-        toggleCalendar();
-    }
 
     public void onButtonPressed_Settings(View view){
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -140,5 +150,56 @@ public class MainActivity extends AppCompatActivity {
     //Diagrammi Activity button vv
     public void onButtonPressed_Arvo(View view){
        Intent intent = new Intent(MainActivity.this, ArvoActivity.class);
-        startActivity(intent);}
+        startActivity(intent);
+    }
+
+    public void onButtonPressed_Lisaa(View view){
+        final EditText value_editText = findViewById(R.id.arvoView);
+        if(!value_editText.getText().toString().isEmpty() && !value_editText.getText().toString().startsWith(".")) {
+            value = Double.parseDouble(value_editText.getText().toString());
+        }
+
+        if(!lisaa_isDateValid()) {
+            showToast("DATE IS INVALID", Toast.LENGTH_LONG);
+            return;
+        }
+        if(!lisaa_isTimeValid()) {
+            showToast("TIME IS INVALID", Toast.LENGTH_LONG);
+            return;
+        }
+        if(!lisaa_isValueValid()) {
+            showToast("VALUE IS INVALID", Toast.LENGTH_LONG);
+            return;
+        }
+
+        // Lisää verensokeri ...
+        showToast("Kaikki OK", Toast.LENGTH_SHORT);
+    }
+
+    // Lisää arvo
+    private boolean lisaa_isDateValid() {
+        final String DATE_FORMAT = "dd-MM-yyyy";
+        String date = mDay + "-" + mMonth + "-" + mYear;
+        try {
+            DateFormat df = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+            df.setLenient(false);
+            df.parse(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+    private boolean lisaa_isTimeValid() {
+        return true; // Time is always valid ( for now )
+    }
+    private boolean lisaa_isValueValid() {
+        return value > 0.0 && value < 1000;
+    }
+
+    // Toast
+
+    private void showToast(String message, int duration) {
+        Toast.makeText(MainActivity.this, message,
+                duration).show();
+    }
 }
