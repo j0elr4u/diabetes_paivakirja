@@ -21,4 +21,8 @@
     <string name="user_settings">User Settings</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+
+    <!-- Common Strings -->
+    <string name="app_font">Guug</string>
+
 </resources>
