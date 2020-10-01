@@ -26,13 +26,16 @@ public class Verensokerit {
     }
 
     public void lisaa(Verensokeri verensokeri) {
-        for(int i = 0; i < verensokeriList.size(); i++) {
-            if(verensokeriList.get(i).getVerensokeriID() == verensokeri.getVerensokeriID()) {
-                //On jo olemassa verensokeri tälle ajalle.
-                verensokeriList.remove(i);
-                break;
+        if(!verensokeriList.isEmpty()) {
+            for (int i = 0; i < verensokeriList.size(); i++) {
+                if (verensokeriList.get(i).getVerensokeriID() == verensokeri.getVerensokeriID()) {
+                    //On jo olemassa verensokeri tälle ajalle.
+                    verensokeriList.remove(i);
+                    break;
+                }
             }
         }
+
         verensokeriList.add(verensokeri);
     }
 }
