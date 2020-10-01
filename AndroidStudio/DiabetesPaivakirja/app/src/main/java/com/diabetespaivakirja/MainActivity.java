@@ -14,10 +14,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -31,12 +36,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private double value;
 
-    private SharedPrefs sp = new SharedPrefs("prefs");
+    private SharedPrefs sp;
+
+    private Verensokerit verensokerit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        main();
+    }
+
+    private void main() {
+        sp = new SharedPrefs(this,"prefs");
+        verensokerit = Verensokerit.getInstance();
+
+        verensokerit_init();
 
         calendarStuff();
         updateUI();
@@ -174,6 +190,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Lisää verensokeri ...
         showToast("Kaikki OK", Toast.LENGTH_SHORT);
+
+        Verensokeri vs = new Verensokeri(value, mMinute, mHour, mDay, mMonth, mYear);
+        verensokerit.lisaa(vs);
+        verensokerit_save();
     }
 
     // Lisää arvo
@@ -193,7 +213,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true; // Time is always valid ( for now )
     }
     private boolean lisaa_isValueValid() {
-        return value > 0.0 && value < 1000;
+        return value > 0.0 && value < 40;
+    }
+
+    public void verensokerit_init() {
+        if(!sp.getPrefString("Verensokerit").isEmpty()) {
+            Gson gson = new Gson();
+            Verensokeri[] mcArray = gson.fromJson(sp.getPrefString("Verensokerit"), Verensokeri[].class);
+            List<Verensokeri> verensokeriList = new ArrayList<>(Arrays.asList(mcArray));
+            verensokerit.setVerensokerit(verensokeriList);
+        }
+    }
+
+    public void verensokerit_save() {
+        String verensokeritJson = new Gson().toJson(verensokerit.getVerensokerit());
+        sp.putPref("Verensokerit", verensokeritJson);
     }
 
     // Toast

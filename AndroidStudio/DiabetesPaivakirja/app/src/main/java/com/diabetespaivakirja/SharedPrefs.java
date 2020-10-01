@@ -4,24 +4,25 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
-public class SharedPrefs extends AppCompatActivity {
+public class SharedPrefs {
     private String name = "prefs";
+    Activity activity;
 
-    SharedPrefs() {
-
+    SharedPrefs(Activity activity) {
+        this.activity = activity;
     }
 
-    SharedPrefs(String name) {
+    SharedPrefs(Activity activity, String name) {
+        this.activity = activity;
         this.name = name;
     }
 
     // Shared Preferences
 
     private SharedPreferences getSharedPrefs() {
-        return getSharedPreferences(this.name, Activity.MODE_PRIVATE);
+        return this.activity.getSharedPreferences(this.name, Context.MODE_PRIVATE);
     }
 
     private SharedPreferences.Editor getSharedPrefsEditor(SharedPreferences SharedPrefs) {

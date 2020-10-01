@@ -1,6 +1,8 @@
 package com.diabetespaivakirja;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,11 +24,36 @@ import java.util.List;
 
 public class ArvoActivity extends AppCompatActivity {
 
+    Verensokerit verensokerit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arvo);
 
+        main();
+    }
+
+    private void main() {
+        verensokerit = Verensokerit.getInstance();
+
+        boolean listView_show = true;
+        boolean anyChart_show = false;
+        if(listView_show) {
+            listView();
+        }
+        if(anyChart_show) {
+            anyChart();
+        }
+    }
+
+    private void listView() {
+        ListView listView = findViewById(R.id.list_view);
+
+        listView.setAdapter(new ArrayAdapter<>( this, android.R.layout.simple_list_item_1, verensokerit.getVerensokerit()));
+    }
+
+    private void anyChart() {
         AnyChartView anyChartView = findViewById(R.id.any_chart_view);
         //anyChartView.setProgressBar(findViewById(R.id.progress_bar));
 
@@ -62,7 +89,5 @@ public class ArvoActivity extends AppCompatActivity {
         cartesian.yAxis(0).title("Keskiarvo");
 
         anyChartView.setChart(cartesian);
-
     }
-
 }
