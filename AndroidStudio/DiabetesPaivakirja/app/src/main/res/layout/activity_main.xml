@@ -130,8 +130,8 @@
 
     <Button
         android:id="@+id/settings_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="63dp"
+        android:layout_height="57dp"
         android:background="@drawable/settings"
         android:onClick="onButtonPressed_Settings"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -139,20 +139,20 @@
         app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.043" />
 
     <Button
         android:id="@+id/Navi_Button"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:background="@android:drawable/arrow_down_float"
+        android:layout_width="65dp"
+        android:layout_height="60dp"
+        android:background="@drawable/cross"
         android:fontFamily="@string/app_font"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.043" />
 
     <TextView
         android:id="@+id/nameView"
