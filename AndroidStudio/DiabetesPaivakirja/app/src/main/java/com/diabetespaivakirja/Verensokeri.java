@@ -18,8 +18,8 @@ public class Verensokeri {
         return this.value;
     }
 
-    public int getVerensokeriID() {
-        return Integer.parseInt(String.valueOf(this.year) + this.month + this.day + this.hour + this.minute);
+    public String getVerensokeriID() {
+        return "" + this.year + this.month + this.day + this.hour + this.minute;
     }
 
 

@@ -22,7 +22,15 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
 
+    <!-- Main Activity -->
+    <string name="main_verensokeri">Verensokeri</string>
+    <string name="main_lisaa_verensokeriarvo">Lisää verensokeriarvo</string>
+    <string name="main_paivamaara">Päivämäärä</string>
+    <string name="main_aika">Aika</string>
+    <string name="main_arvo">Arvo</string>
+    <string name="main_nimi">Ari Salonen</string>
+
     <!-- Common Strings -->
-    <string name="app_font">Guug</string>
+    <string name="nul" />
 
 </resources>

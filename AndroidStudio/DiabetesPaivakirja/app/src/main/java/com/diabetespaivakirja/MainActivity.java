@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -84,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Calendar stuff
 
     public void calendarStuff() {
-        txtDate = findViewById(R.id.dateView);
-        txtTime = findViewById(R.id.timeView);
+        txtDate = findViewById(R.id.paivamaaraView);
+        txtTime = findViewById(R.id.aikaView);
 
         txtDate.setOnClickListener(this);
         txtTime.setOnClickListener(this);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Get Current Date
         mYear = calendar.get(Calendar.YEAR);
-        mMonth = calendar.get(Calendar.MONTH);
+        mMonth = calendar.get(Calendar.MONTH) + 1;
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         // Get Current Time
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             txtDate.setText(text);
 
                         }
-                    }, mYear, mMonth, mDay);
+                    }, mYear, mMonth - 1, mDay);
             datePickerDialog.show();
         }
         if (v == txtTime) {
@@ -190,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Lisää verensokeri ...
         showToast("Kaikki OK", Toast.LENGTH_SHORT);
+        Log.d("MainActivity", "\n" + value + "\n" + mMinute + "\n" + mHour + "\n" + mDay + "\n" + mMonth + "\n" + mYear);
 
         Verensokeri vs = new Verensokeri(value, mMinute, mHour, mDay, mMonth, mYear);
         verensokerit.lisaa(vs);
