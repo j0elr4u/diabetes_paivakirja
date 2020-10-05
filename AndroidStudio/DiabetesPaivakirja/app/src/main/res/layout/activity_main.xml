@@ -176,7 +176,7 @@
         app:layout_constraintVertical_bias="0.043" />
 
     <TextView
-        android:id="@+id/nameView"
+        android:id="@+id/yearView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

@@ -9,7 +9,6 @@ public class Verensokerit {
     private static final Verensokerit verensokerit = new Verensokerit();
 
     private Verensokerit() {
-
         verensokeriList = new ArrayList<>();
     }
 
@@ -19,6 +18,17 @@ public class Verensokerit {
 
     public List<Verensokeri> getVerensokerit() {
         return verensokeriList;
+    }
+
+    public Verensokeri getVerensokeriById(String id) {
+        if(!verensokeriList.isEmpty()) {
+            for(Verensokeri vs : verensokeriList) {
+                if(vs.getVerensokeriID().equals(id)) {
+                    return vs;
+                }
+            }
+        }
+        return new Verensokeri(-1,-1,-1,-1,-1, -1); // No such Verensokeri in verensokeritList
     }
 
     public void setVerensokerit(List<Verensokeri> verensokerit) {

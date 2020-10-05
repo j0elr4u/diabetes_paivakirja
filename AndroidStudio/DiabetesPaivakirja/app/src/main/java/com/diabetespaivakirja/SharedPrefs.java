@@ -29,10 +29,6 @@ public class SharedPrefs {
         return SharedPrefs.edit();
     }
 
-    public boolean prefsCommit() {
-        return getSharedPrefsEditor(getSharedPrefs()).commit();
-    }
-
     public void putPref(String prefName, int value) {
         SharedPreferences.Editor prefEditor = getSharedPrefsEditor(getSharedPrefs());
         prefEditor.putInt(prefName, value);

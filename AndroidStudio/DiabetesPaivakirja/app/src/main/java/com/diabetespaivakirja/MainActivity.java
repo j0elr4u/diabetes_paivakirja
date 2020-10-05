@@ -72,14 +72,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateUI() {
-        updateName();
+        updateUI_Name();
+        updateUI_Calendar();
     }
 
-    private void updateName() {
-        final TextView name_view = findViewById(R.id.nameView);
+    private void updateUI_Name() {
+        final TextView name_view = findViewById(R.id.yearView);
         String name = this.sp.getDefaultPrefString("first_name", this) + " " + this.sp.getDefaultPrefString("last_name", this);
 
         name_view.setText(name);
+    }
+
+    private void updateUI_Calendar() {
+        String dateText = to00String(mDay) + "/" + to00String(mMonth) + "/" + mYear;
+        String timeText = to00String(mHour) + ":" + to00String(mMinute);
+
+        txtDate.setText(dateText);
+        txtTime.setText(timeText);
     }
 
     // Calendar stuff
@@ -103,11 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMinute = calendar.get(Calendar.MINUTE);
 
         // Set current date & time in the text
-        String dateText = mDay + "/" + mMonth + "/" + mYear;
-        String timeText = mHour + ":" + mMinute;
-
-        txtDate.setText(dateText);
-        txtTime.setText(timeText);
+        // this is done in updateUI()
 
         // Rest is done in onClick()
     }
@@ -130,9 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             mMonth = (monthOfYear + 1);
                             mDay = dayOfMonth;
 
-                            String text = mDay + "/" + mMonth + "/" + mYear;
-                            txtDate.setText(text);
-
+                            updateUI_Calendar();
                         }
                     }, mYear, mMonth - 1, mDay);
             datePickerDialog.show();
@@ -150,8 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             mMinute = minute;
                             mHour = hourOfDay;
 
-                            String text = mHour + ":" + mMinute;
-                            txtTime.setText(text);
+                            updateUI_Calendar();
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -220,8 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void verensokerit_init() {
         if(!sp.getPrefString("Verensokerit").isEmpty()) {
-            Gson gson = new Gson();
-            Verensokeri[] mcArray = gson.fromJson(sp.getPrefString("Verensokerit"), Verensokeri[].class);
+            Verensokeri[] mcArray = new Gson().fromJson(sp.getPrefString("Verensokerit"), Verensokeri[].class);
             List<Verensokeri> verensokeriList = new ArrayList<>(Arrays.asList(mcArray));
             verensokerit.setVerensokerit(verensokeriList);
         }
@@ -237,5 +238,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showToast(String message, int duration) {
         Toast.makeText(MainActivity.this, message,
                 duration).show();
+    }
+
+    // Utils
+
+    public String to00String(int i) {
+        String s = String.valueOf(i);
+        if(i < 10) {
+            s = "0" + s;
+        }
+        return s;
     }
 }

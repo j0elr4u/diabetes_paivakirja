@@ -30,6 +30,13 @@
     <string name="main_arvo">Arvo</string>
     <string name="main_nimi">Ari Salonen</string>
 
+    <!-- Arvo Info Activity -->
+    <string name="arvo_info_vuosi">Vuosi</string>
+    <string name="arvo_info_kuukausi">Kuukausi</string>
+    <string name="arvo_info_paiva">Päivä</string>
+    <string name="arvo_info_verensokeri">Verensokeri</string>
+
+
     <!-- Common Strings -->
     <string name="nul" />
 
