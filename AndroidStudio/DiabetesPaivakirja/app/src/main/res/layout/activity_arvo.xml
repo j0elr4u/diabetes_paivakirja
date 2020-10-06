@@ -5,24 +5,13 @@
     android:id="@+id/back_button"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2F7595"
     tools:context=".ArvoActivity">
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="82dp"
-        android:layout_height="71dp"
-        android:background="#C30A0A"
-        android:src="@drawable/cross"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:src="@drawable/cross"
-        tools:srcCompat="@drawable/cross" />
 
     <com.anychart.AnyChartView
         android:id="@+id/any_chart_view"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -39,8 +28,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-    </ListView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

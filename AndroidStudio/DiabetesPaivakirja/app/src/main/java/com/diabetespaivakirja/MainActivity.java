@@ -2,8 +2,10 @@ package com.diabetespaivakirja;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     //Diagrammi Activity button vv
     public void onButtonPressed_Arvo(View view){
-       Intent intent = new Intent(MainActivity.this, ArvoActivity.class);
+       Intent intent = new Intent(MainActivity.this, ArvoActivityInit.class);
         startActivity(intent);
     }
 
@@ -191,8 +193,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        // alhainen verensokeri
+        if(value < 4) {
+            showAlertDialog("Your blood sugar is very low!");
+        }
+        // korkea verensokeri
+        else if(value > 7) {
+            showAlertDialog("Your blood sugar is very high!");
+        }
+
         // Lisää verensokeri ...
-        showToast("Kaikki OK", Toast.LENGTH_SHORT);
+        showToast("Added value...", Toast.LENGTH_SHORT);
         Log.d("MainActivity", "\n" + value + "\n" + mMinute + "\n" + mHour + "\n" + mDay + "\n" + mMonth + "\n" + mYear);
 
         Verensokeri vs = new Verensokeri(value, mMinute, mHour, mDay, mMonth, mYear);
@@ -231,6 +242,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void verensokerit_save() {
         String verensokeritJson = new Gson().toJson(verensokerit.getVerensokerit());
         sp.putPref("Verensokerit", verensokeritJson);
+    }
+
+    // AlertDialog
+
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage(message);
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(
+                "Okay",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     // Toast

@@ -36,6 +36,7 @@ public class ArvoActivity extends AppCompatActivity {
 
     Calendar calendar;
     Verensokerit verensokerit;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +49,12 @@ public class ArvoActivity extends AppCompatActivity {
     private void main() {
         verensokerit = Verensokerit.getInstance();
         calendar = Calendar.getInstance();
+        intent = getIntent();
 
-        boolean listView_show = true;
+        boolean listView_show = intent.getBooleanExtra("boolean", true);
         if(listView_show) {
             listView();
-        } else if(!listView_show) {
+        } else {
             anyChart();
         }
     }
@@ -60,7 +62,7 @@ public class ArvoActivity extends AppCompatActivity {
     private void listView() {
         ListView listView = findViewById(R.id.list_view);
 
-        final List<Verensokeri> verensokerit_list = getVS(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
+        final List<Verensokeri> verensokerit_list = getVS();
         List<String> strings = getVSStrings(verensokerit_list);
         listView.setAdapter(new ArrayAdapter<>( this, android.R.layout.simple_list_item_1, strings));
 
@@ -86,7 +88,7 @@ public class ArvoActivity extends AppCompatActivity {
         //data.add(new ValueDataEntry("ti", 8));
         //data.add(new ValueDataEntry("kv", 10));
 
-        List<Verensokeri> verensokerit_list = getVS(2020, 10);
+        List<Verensokeri> verensokerit_list = getVS();
         for(int i = 0; i < verensokerit_list.size(); i++) {
             Verensokeri vs = verensokerit_list.get(i);
 
@@ -119,12 +121,15 @@ public class ArvoActivity extends AppCompatActivity {
         anyChartView.setChart(cartesian);
     }
 
-    // Returns a sorted list with average values of days in wanted year->month [ example: getVS( 2020, 10 ); ]
-    private List<Verensokeri> getVS(int wantedYear, int wantedMonth) {
+    // Returns a sorted list with average values of days in wanted year->month
+    private List<Verensokeri> getVS() {
         List<Verensokeri> verensokerit_list = verensokerit.getVerensokerit();
         List<Verensokeri> verensokerit_list_wanted = new ArrayList<>();
         List<Verensokeri> verensokerit_list_averaged = new ArrayList<>();
         List<Verensokeri> verensokerit_list_sorted = new ArrayList<>();
+
+        int wantedYear = calendar.get(Calendar.YEAR);
+        int wantedMonth = calendar.get(Calendar.MONTH) + 1;
 
         for(int i = 0; i < verensokerit_list.size(); i++) {
             Verensokeri vs = verensokerit_list.get(i);
@@ -184,6 +189,7 @@ public class ArvoActivity extends AppCompatActivity {
         return verensokerit_list_sorted;
     }
 
+    // Returns name of the day + (Integer day)
     private List<String> getVSStrings(List<Verensokeri> vs) {
         List<String> strings = new ArrayList<>();
 
@@ -195,6 +201,7 @@ public class ArvoActivity extends AppCompatActivity {
     }
 
     @SuppressLint({"SimpleDateFormat", "DefaultLocale"})
+    // Returns name of the day
     private String getVSNameOfDay(Verensokeri vs) {
         Date date;
         try {

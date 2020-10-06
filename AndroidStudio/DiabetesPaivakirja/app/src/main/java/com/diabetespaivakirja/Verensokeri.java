@@ -14,6 +14,15 @@ public class Verensokeri {
         this.year = year;
     }
 
+    Verensokeri() {
+        this.value = -1;
+        this.minute = -1;
+        this.hour = -1;
+        this.day = -1;
+        this.month = -1;
+        this.year = -1;
+    }
+
     public double getVerensokeri() {
         return this.value;
     }

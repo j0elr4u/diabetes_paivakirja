@@ -7,46 +7,50 @@
     tools:context=".ArvoActivityInfo"
     android:background="#2F7595">
 
-    <Button
+    <ImageButton
         android:id="@+id/Navi_Button"
-        android:layout_width="75dp"
-        android:layout_height="70dp"
-        android:background="@drawable/cross"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/button"
+        android:contentDescription="@string/nul"
         android:onClick="onButtonPressed_Back"
+        android:scaleType="centerInside"
+        android:src="@drawable/arrowback"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <TextView
         android:id="@+id/yearView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/arvo_info_vuosi"
-        android:textSize="22sp"
-        android:textColor="#FFFEFE"
         android:fontFamily="@font/arvo"
+        android:text="@string/arvo_info_vuosi"
+        android:textColor="#FFFEFE"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/yearView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/arvo_info_vuosi"
-        android:textSize="18sp"
-        android:textColor="#FFFEFE"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/arvo"
+        android:text="@string/arvo_info_vuosi"
+        android:textColor="#FFFEFE"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/yearView_title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/monthView_title"
@@ -66,38 +70,25 @@
         android:id="@+id/monthView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/arvo_info_kuukausi"
-        android:textSize="18sp"
-        android:textColor="#FFFEFE"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/arvo"
+        android:text="@string/arvo_info_kuukausi"
+        android:textColor="#FFFEFE"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintTop_toBottomOf="@+id/monthView_title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/dayView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/arvo"
         android:text="@string/arvo_info_paiva"
+        android:textColor="#FFFEFE"
         android:textSize="22sp"
-        android:textColor="#FFFEFE"
-        android:fontFamily="@font/arvo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
-
-    <TextView
-        android:id="@+id/dayView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/arvo_info_paiva"
-        android:textSize="18sp"
-        android:textColor="#FFFEFE"
-        android:fontFamily="@font/arvo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,30 +96,45 @@
         app:layout_constraintVertical_bias="0.6" />
 
     <TextView
+        android:id="@+id/dayView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/arvo"
+        android:text="@string/arvo_info_paiva"
+        android:textColor="#FFFEFE"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayView_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/valueView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/arvo_info_verensokeri"
-        android:textSize="22sp"
-        android:textColor="#FFFEFE"
         android:fontFamily="@font/arvo"
+        android:text="@string/arvo_info_verensokeri"
+        android:textColor="#FFFEFE"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/valueView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/arvo_info_verensokeri"
-        android:textSize="18sp"
-        android:textColor="#FFFEFE"
         android:fontFamily="@font/arvo"
+        android:text="@string/arvo_info_verensokeri"
+        android:textColor="#FFFEFE"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/valueView_title"
+        app:layout_constraintVertical_bias="0.04000002" />
 </androidx.constraintlayout.widget.ConstraintLayout>

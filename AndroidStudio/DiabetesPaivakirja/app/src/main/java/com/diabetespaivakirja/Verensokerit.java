@@ -28,7 +28,7 @@ public class Verensokerit {
                 }
             }
         }
-        return new Verensokeri(-1,-1,-1,-1,-1, -1); // No such Verensokeri in verensokeritList
+        return new Verensokeri(); // No such Verensokeri in verensokeritList
     }
 
     public void setVerensokerit(List<Verensokeri> verensokerit) {
