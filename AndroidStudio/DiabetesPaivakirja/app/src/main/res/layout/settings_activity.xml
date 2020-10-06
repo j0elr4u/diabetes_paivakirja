@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F7595">
+    android:background="#2F7595"
+    android:scrollbarSize="20dp">
 
     <FrameLayout
         android:id="@+id/settings"

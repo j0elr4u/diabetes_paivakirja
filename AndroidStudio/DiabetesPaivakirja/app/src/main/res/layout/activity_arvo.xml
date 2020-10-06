@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ArvoActivity">
 
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="82dp"
+        android:layout_height="71dp"
+        android:background="#C30A0A"
+        android:src="@drawable/cross"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/cross"
+        tools:srcCompat="@drawable/cross" />
+
     <com.anychart.AnyChartView
         android:id="@+id/any_chart_view"
         android:layout_width="match_parent"
@@ -28,20 +39,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:background="#FFFFFF"
-        android:src="@android:drawable/ic_media_previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@android:drawable/ic_media_previous" />
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

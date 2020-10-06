@@ -9,9 +9,10 @@
 
     <Button
         android:id="@+id/Navi_Button"
-        android:layout_width="65dp"
-        android:layout_height="60dp"
-        android:background="@drawable/button"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:background="@drawable/cross"
+        android:onClick="onButtonPressed_Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"

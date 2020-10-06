@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class ArvoActivityInfo extends AppCompatActivity {
@@ -19,6 +20,10 @@ public class ArvoActivityInfo extends AppCompatActivity {
         setContentView(R.layout.activity_arvo_info);
 
         main();
+    }
+    public void onButtonPressed_Back (View view) {
+        Intent intent = new Intent(ArvoActivityInfo.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void main() {

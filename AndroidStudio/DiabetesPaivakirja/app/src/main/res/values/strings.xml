@@ -24,7 +24,7 @@
 
     <!-- Main Activity -->
     <string name="main_verensokeri">Verensokeri</string>
-    <string name="main_lisaa_verensokeriarvo">Lisää verensokeriarvo</string>
+    <string name="main_lisaa_verensokeriarvo">Tallennna verensokeriarvo</string>
     <string name="main_paivamaara">Päivämäärä</string>
     <string name="main_aika">Aika</string>
     <string name="main_arvo">Arvo</string>
