@@ -38,6 +38,9 @@ public class ArvoActivity extends AppCompatActivity {
     Verensokerit verensokerit;
     Intent intent;
 
+    AnyChartView anyChartView;
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,20 +54,25 @@ public class ArvoActivity extends AppCompatActivity {
         calendar = Calendar.getInstance();
         intent = getIntent();
 
+        anyChartView = findViewById(R.id.any_chart_view);
+        listView = findViewById(R.id.list_view);
+
         boolean listView_show = intent.getBooleanExtra("boolean", true);
         if(listView_show) {
+            anyChartView.setVisibility(View.INVISIBLE);
+            listView.setVisibility(View.VISIBLE);
             listView();
         } else {
+            anyChartView.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.INVISIBLE);
             anyChart();
         }
     }
 
     private void listView() {
-        ListView listView = findViewById(R.id.list_view);
-
         final List<Verensokeri> verensokerit_list = getVS();
         List<String> strings = getVSStrings(verensokerit_list);
-        listView.setAdapter(new ArrayAdapter<>( this, android.R.layout.simple_list_item_1, strings));
+        listView.setAdapter(new ArrayAdapter<>( this, R.layout.simple_list_item_custom, strings));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,7 +86,6 @@ public class ArvoActivity extends AppCompatActivity {
     }
 
     private void anyChart() {
-        AnyChartView anyChartView = findViewById(R.id.any_chart_view);
         //anyChartView.setProgressBar(findViewById(R.id.progress_bar));
 
         Cartesian cartesian = AnyChart.column();
